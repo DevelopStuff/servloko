@@ -6,12 +6,13 @@ rescue LoadError
   lib_path = File.expand_path('../../lib', __FILE__)
   $:.unshift(lib_path)
   require "servloko"
-  opts = ServLoko::Options.parse(ARGV)
-  
-  if opts[:file].nil?
-    puts "You must provide a file to run"
-    exit 1
-  end
-  
-  Servloko.start(opts[:file],opts[:port] || 3000,opts[:daemonize] || false)
 end
+
+opts = ServLoko::Options.parse(ARGV)
+
+if opts[:file].nil?
+  puts "You must provide a file to run"
+  exit 1
+end
+
+Servloko.start(opts[:file],opts[:port] || 3000,opts[:daemonize] || false)
