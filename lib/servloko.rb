@@ -1,3 +1,4 @@
+require 'tempfile'
 require 'servloko/version'
 
 module Servloko
