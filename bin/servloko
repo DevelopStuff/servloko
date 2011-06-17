@@ -8,7 +8,7 @@ rescue LoadError
   require "servloko"
 end
 
-opts = ServLoko::Options.parse(ARGV)
+opts = Servloko::Options.parse(ARGV)
 
 if opts[:file].nil?
   puts "You must provide a file to run"
