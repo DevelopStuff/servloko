@@ -7,7 +7,7 @@ rescue LoadError
   $:.unshift(lib_path)
   require "servloko"
 end
-
+require 'servloko/options'
 opts = Servloko::Options.parse(ARGV)
 
 if opts[:file].nil?
