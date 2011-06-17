@@ -16,7 +16,7 @@ module Servloko
        rackup.flush
 
        if daemonize
-         `nohup thin -R #{rackup.path} -p #{port} &`
+         puts `nohup thin start -R #{rackup.path} -p #{port} &`
        else
          puts `thin start -R #{rackup.path} -p #{port}`
        end
