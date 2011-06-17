@@ -1,6 +1,6 @@
 module Servloko
   module Options
-    def parse(argv)
+    def self.parse(argv)
       opts = {}
       # file
       opts[:file] = ARGV[0].chomp
