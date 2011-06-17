@@ -9,7 +9,7 @@ module Servloko
     
     begin
        rackup.write "app = proc do |env|\n"
-       rackup.write "  body = [`ruby #{file}`.chomp]\n"
+       rackup.write "  body = [`ruby #{file}`.chomp.gsub('\r\n','<br/>')]\n"
        rackup.write "  [200,{'Content-Type' => 'text/html'},body]\n"
        rackup.write "end\n"
        rackup.write "run app\n"
