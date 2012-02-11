@@ -13,8 +13,8 @@ opts = Servloko::Options.parse(ARGV)
 
 if opts[:file].nil?
   puts "You must provide a file to run"
-  puts "Usage: servloko <file> [-p PORT] [-d (deamonize)]"
+  puts "Usage: servloko <file> [-p PORT] [-d <pid_file>]"
   exit 1
 end
 
-Servloko.start(opts[:file],opts[:port] || 3000,opts[:daemonize] || false)
+Servloko.start(opts)
