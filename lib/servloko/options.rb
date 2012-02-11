@@ -4,10 +4,11 @@ module Servloko
       opts = {}
       
       return opts unless ARGV.size > 0
+      
       # file
       opts[:file] = ARGV[0].chomp
       
-      opts[:deamonize]
+      opts[:daemonize]
             
       # port
       argv.each_with_index do |a,idx|
@@ -16,7 +17,8 @@ module Servloko
         end
         
         if a == "-d"
-          opts[:deamonize] = true
+          opts[:daemonize] = true
+          opts[:pid_file] = argv[idx+1].chomp if argv[idx+1]
         end
       end
       
