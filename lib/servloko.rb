@@ -4,19 +4,16 @@ require 'servloko/version'
 
 module Servloko
   
-  def self.start(opts = {})
-    file = opts[:file]
-    port = opts[:port] || 3000
-    daemonize = opts[:daemonize] || false
-    pid_file = opts[:pid_file] if daemonize
-    
-    puts "Servloko v#{Servloko::VERSION} booting on port #{port}"
+  def self.start(file,thin_opts)
+    puts "Servloko v#{Servloko::VERSION} booting thin"
     puts "------------------------------------------------------"
     rackup = Tempfile.new(['servloko','.ru'])
     begin
-      if !daemonize
+      
+      unless thin_opts.include?("-d")
         rackup.write "use Rack::CommonLogger\n"
       end
+      
       rackup.write "app = proc do |env|\n"
       rackup.write "  req = Rack::Request.new(env)\n"
       rackup.write "  body = [`ruby #{file} \"\#\{req.query_string\}\"`.chomp.gsub('\r\n','<br/>')]\n"
@@ -24,18 +21,12 @@ module Servloko
       rackup.write "end\n"
       rackup.write "run app\n"
       rackup.flush
-
-      if daemonize
-        pid_file ||= File.join(Dir::tmpdir,"servloko.pid")
-        puts "starting thin in daemon mode."
-        puts "to stop: cat #{pid_file} | xargs kill"
-        puts `thin start -R #{rackup.path} -p #{port} -d -P #{pid_file}`
-      else
-        PTY.spawn "thin start -R #{rackup.path} -p #{port}" do |r,w,p|
-          loop { puts r.gets }
-        end
+      
+      PTY.spawn "thin start -R #{rackup.path} #{thin_opts}" do |r,w,p|
+        loop { puts r.gets }
       end
     rescue SignalException => e
+      puts
       puts "shutting down..."
     ensure
       puts "------------------------------------------------------"

@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{Servloko takes a ruby script and magically provides it's output to the web. Be careful though, you could expose system details.}
 
   s.rubyforge_project = "servloko"
-  s.add_dependency "thin", "~> 1.2.0"
+  s.add_dependency "thin", "~> 1.3.0"
   s.add_development_dependency "rake", "~> 0.9.0"
   
   s.files         = `git ls-files`.split("\n")

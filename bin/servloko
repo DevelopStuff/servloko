@@ -8,13 +8,19 @@ rescue LoadError
   require "servloko"
 end
 
-require 'servloko/options'
-opts = Servloko::Options.parse(ARGV)
+file = ARGV[0]
+argv_c = ARGV.dup
+argv_c.shift
+thin_opts = argv_c.join(" ")
 
-if opts[:file].nil?
+if file.nil? || file.empty?
   puts "You must provide a file to run"
-  puts "Usage: servloko <file> [-p PORT] [-d <pid_file>]"
+  puts "Usage: servloko <file> [thin options]"
+  exit 1
+elsif file.include?"-h"
+  puts "Usage: servloko <file> [thin options]"
+  puts `thin -h`
   exit 1
 end
 
-Servloko.start(opts)
+Servloko.start(file,thin_opts)
