@@ -2,6 +2,8 @@ module Servloko
   module Options
     def self.parse(argv)
       opts = {}
+      
+      return opts unless ARGV.size > 0
       # file
       opts[:file] = ARGV[0].chomp
       

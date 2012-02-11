@@ -7,11 +7,13 @@ rescue LoadError
   $:.unshift(lib_path)
   require "servloko"
 end
+
 require 'servloko/options'
 opts = Servloko::Options.parse(ARGV)
 
 if opts[:file].nil?
   puts "You must provide a file to run"
+  puts "Usage: servloko <file> [-p PORT] [-d (deamonize)]"
   exit 1
 end
 
