@@ -15,10 +15,10 @@ thin_opts = argv_c.join(" ")
 
 if file.nil? || file.empty?
   puts "You must provide a file to run"
-  puts "Usage: servloko <file> [thin options]"
+  puts "Usage: servloko <file> [thin opts]"
   exit 1
 elsif file.include?"-h"
-  puts "Usage: servloko <file> [thin options]"
+  puts "Usage: servloko <file> [thin opts]"
   puts `thin -h`
   exit 1
 end
