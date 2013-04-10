@@ -12,8 +12,6 @@ task :clobber do
   rm_rf 'rdoc'
 end
 
-task(:release).clear_prerequisites.clear_actions
-
 Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "servloko gem"
