@@ -13,8 +13,8 @@ Gem::Specification.new do |s|
   s.description = %q{Servloko takes a ruby script and magically provides it's output to the web. Be careful though, you could expose system details.}
 
   s.rubyforge_project = "servloko"
-  s.add_dependency "thin", "~> 1.4.0"
-  s.add_development_dependency "rake", "~> 0.9.0"
+  s.add_dependency "thin", "~> 1.5.0"
+  s.add_development_dependency "rake", "~> 10.0.0"
   
   s.files         = `git ls-files`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
