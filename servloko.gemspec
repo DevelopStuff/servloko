@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.version     = Servloko::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Jake Good"]
-  s.email       = ["jake@whoisjake.com"]
-  s.homepage    = "http://www.thoughtstoblog.com"
+  s.email       = ["jake@developstuff.com"]
+  s.homepage    = "http://developstuff.com"
   s.summary     = %q{Servloko takes a ruby script and magically provides it's output to the web.}
   s.description = %q{Servloko takes a ruby script and magically provides it's output to the web. Be careful though, you could expose system details.}
 
